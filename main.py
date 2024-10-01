@@ -2,10 +2,11 @@ import os
 import sys
 from pathlib import Path
 
-if sys.argv[1] == "local":
-    MAIN_PATH = Path("./main_version")
-    BRANCH_PATH = Path("./branch_version")
-else:
+try:
+    if sys.argv[1] == "local":
+        MAIN_PATH = Path("./main_version")
+        BRANCH_PATH = Path("./branch_version")
+except IndexError:
     INPUT_PATH = Path(os.environ.get('INPUT_PATH'))
     ROOT_PATH = Path(os.environ.get('GITHUB_WORKSPACE'))
     MAIN_PATH = ROOT_PATH / "main" / INPUT_PATH
