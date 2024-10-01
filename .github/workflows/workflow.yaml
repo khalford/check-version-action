@@ -18,6 +18,6 @@ jobs:
         uses: khalford/check-version-action@main
         with:
           path: "version.txt"
-      - name: Check outputs and modified files
+      - name: Check output
         run: |
           echo "${{ steps.selftest.outputs.updated }}"

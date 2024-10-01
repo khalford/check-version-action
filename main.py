@@ -13,6 +13,10 @@ except IndexError:
     BRANCH_PATH = ROOT_PATH / "branch" / INPUT_PATH
 
 
+class VersionNotUpdated(Exception):
+    """The version number has not been updated."""
+
+
 def get_file_contents():
     with open(MAIN_PATH, "r") as main:
         main_contents = main.read()
@@ -29,13 +33,11 @@ def compare(main, branch):
     for i in range(3):
         if main_split[i] != branch_split[i]:
             return True
-    return False
+    raise VersionNotUpdated(f"The version number in {INPUT_PATH} has not been updated."
+                            f"\nPlease update this following semver convention")
 
 
 if __name__ == '__main__':
     main_content, branch_content = get_file_contents()
     updated = compare(main_content, branch_content)
-    if updated:
-        print("Updated")
-    else:
-        print("not updated")
+    print(f"::set-output name=updated::{updated}")
