@@ -52,8 +52,6 @@ if __name__ == "__main__":
     # Set the outputs variable to "true"
     # No need to check here as we expect only true returned
     print(f"::set-output name=updated::{UPDATED}")
-    print(os.environ.get("GITHUB_OUTPUT"))
-    github_output = json.loads(os.environ.get("GITHUB_OUTPUT"))
-
-    github_output["updated"] = UPDATED
-    os.environ["GITHUB_OUTPUT"] = github_output.dumps()
+    GITHUB_ENV = os.getenv('GITHUB_ENV')
+    with open(GITHUB_ENV, "a") as env:
+        env.write("updated=true")
