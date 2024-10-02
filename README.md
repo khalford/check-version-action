@@ -32,7 +32,7 @@ More detailed information about the versions can be found [here](https://packagi
     path: "version.txt"
     
 - name: Log Success
-  if: ${{ steps.version_comparison.outputs.updated == "true" }}
+  if: ${{ steps.version_comparison.outputs.updated == 'true' }}
   run: |
     echo "Version has been updated correctly!"
 ```

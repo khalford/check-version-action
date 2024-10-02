@@ -1,6 +1,7 @@
 """This module is the entry point for the Action."""
 
 import os
+import json
 from pathlib import Path
 from packaging.version import Version
 
@@ -51,3 +52,6 @@ if __name__ == "__main__":
     # Set the outputs variable to "true"
     # No need to check here as we expect only true returned
     print(f"::set-output name=updated::{UPDATED}")
+    GITHUB_ENV = os.getenv('GITHUB_ENV')
+    with open(GITHUB_ENV, "a") as env:
+        env.write("updated=true")

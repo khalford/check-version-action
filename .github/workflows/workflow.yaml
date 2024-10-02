@@ -20,7 +20,8 @@ jobs:
         uses: khalford/check-version-action@main
         with:
           path: "version.txt"
+
       - name: Log Success
-        if: ${{ steps.version_comparison.outputs.updated == true }}
+        if: ${{ steps.selftest.outputs.updated == 'true' }}
         run: |
           echo "Version has been updated correctly!"
