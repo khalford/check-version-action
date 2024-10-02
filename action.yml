@@ -1,5 +1,5 @@
 name: 'Check Semver Version Number'
-description: 'Check if the semver version number has changed from the main branch.'
+description: 'Check if the semver version number has changed from the main branch. Can also check if the docker compose file reflects the application version.'
 inputs:
   app_version_path:
     description: 'Path to main app version file.'
