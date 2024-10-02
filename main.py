@@ -57,7 +57,6 @@ def compare_compose_version(branch_version: str, branch_path: Path, compose_path
     for line in compose_file_contents:
         if "image" in line:
             version_str = line.strip('\n').split(":")[-1]
-            print(version_str)
             break
     if Version(branch_version) != Version(version_str):
         raise VersionNotUpdated(
@@ -79,7 +78,7 @@ if __name__ == "__main__":
 
     if COMPOSE_PATH:
         COMPOSE_PATH = Path(COMPOSE_PATH)
-        COMPOSE_UPDATED = compare_compose_version(branch_version, BRANCH_PATH, str(COMPOSE_PATH), APP_UPDATED)
+        COMPOSE_UPDATED = compare_compose_version(branch_version, BRANCH_PATH, str(COMPOSE_PATH), str(APP_PATH))
         GITHUB_ENV = os.getenv('GITHUB_ENV')
         with open(GITHUB_ENV, "a") as env:
             env.write("compose_updated=true")
