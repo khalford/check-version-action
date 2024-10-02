@@ -23,11 +23,11 @@ jobs:
           docker_compose_path: "docker-compose.yml"
 
       - name: Log Success
-        if: ${{ steps.selftest.outputs.app_updated == 'true' }}
+        if: ${{ env.app_updated == 'true' }}
         run: |
           echo "App version has been updated correctly!"
 
       - name: Log Success
-        if: ${{ steps.selftest.outputs.compose_updated == 'true' }}
+        if: ${{ env.compose_updated == 'true' }}
         run: |
           echo "Compose version has been updated correctly!"
