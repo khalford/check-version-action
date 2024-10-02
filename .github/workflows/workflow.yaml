@@ -1,7 +1,7 @@
 name: Integration Test
 on: [push, pull_request]
 jobs:
-  build:
+  self-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Main to compare
@@ -21,6 +21,6 @@ jobs:
         with:
           path: "version.txt"
       - name: Log Success
-        if: ${{ steps.version_comparison.outputs.updated == "true" }}
+        if: ${{ steps.version_comparison.outputs.updated == true }}
         run: |
           echo "Version has been updated correctly!"
