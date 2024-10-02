@@ -1,43 +1,53 @@
-import os
-import sys
-from pathlib import Path
+"""This module is the entry point for the Action."""
 
-try:
-    if sys.argv[1] == "local":
-        MAIN_PATH = Path("./main_version")
-        BRANCH_PATH = Path("./branch_version")
-except IndexError:
-    INPUT_PATH = Path(os.environ.get('INPUT_PATH'))
-    ROOT_PATH = Path(os.environ.get('GITHUB_WORKSPACE'))
-    MAIN_PATH = ROOT_PATH / "main" / INPUT_PATH
-    BRANCH_PATH = ROOT_PATH / "branch" / INPUT_PATH
+import os
+from pathlib import Path
+from packaging.version import Version
 
 
 class VersionNotUpdated(Exception):
-    """The version number has not been updated."""
+    """The version number has not been updated or updated incorrectly."""
 
 
-def get_file_contents():
-    with open(MAIN_PATH, "r") as main:
-        main_contents = main.read()
-    with open(BRANCH_PATH, "r") as branch:
-        branch_contents = branch.read()
+def get_file_contents(main_path: Path, branch_path: Path) -> (str, str):
+    """
+    This function returns the contents of the main branch version and working branch version.
+    :param main_path: Path to version on main
+    :param branch_path: Path to version on working branch
+    :return: Tuple of versions (main, branch)
+    """
+    with open(main_path, "r", encoding="utf-8") as main_file:
+        main_contents = main_file.read()
+    with open(branch_path, "r", encoding="utf-8") as branch_file:
+        branch_contents = branch_file.read()
     return main_contents, branch_contents
 
 
-def compare(main, branch):
-    main_split = main.split(".")
-    branch_split = branch.split(".")
-    print(f"Main Version is: {main_split}")
-    print(f"Branched Version is: {branch_split}")
-    for i in range(3):
-        if main_split[i] != branch_split[i]:
-            return True
-    raise VersionNotUpdated(f"The version number in {INPUT_PATH} has not been updated."
-                            f"\nPlease update this following semver convention")
+def compare(main: str, branch: str, input_path: str) -> str:
+    """
+    This function compares the versions using the packaging library.
+    It raises an error is the versions are stale or incorrect.
+    :param main: Version on main
+    :param branch: Version on working branch
+    :param input_path: Path to version file to display in error
+    :return: Returns "true" to follow GitHub Actions bools
+    """
+    if Version(branch) <= Version(main):
+        raise VersionNotUpdated(
+            f"The version number in {input_path} has not been updated or updated incorrectly."
+            f"\nPlease update this following semver convention."
+        )
+    return "true"
 
 
-if __name__ == '__main__':
-    main_content, branch_content = get_file_contents()
-    updated = compare(main_content, branch_content)
-    print(f"::set-output name=updated::{updated}")
+if __name__ == "__main__":
+    INPUT_PATH = Path(os.environ.get("INPUT_PATH"))
+    ROOT_PATH = Path(os.environ.get("GITHUB_WORKSPACE"))
+    MAIN_PATH = ROOT_PATH / "main" / INPUT_PATH
+    BRANCH_PATH = ROOT_PATH / "branch" / INPUT_PATH
+
+    main_version, branch_version = get_file_contents(MAIN_PATH, BRANCH_PATH)
+    UPDATED = compare(main_version, branch_version, INPUT_PATH)
+    # Set the outputs variable to "true"
+    # No need to check here as we expect only true returned
+    print(f"::set-output name=updated::{UPDATED}")

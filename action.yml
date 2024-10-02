@@ -4,12 +4,6 @@ inputs:
   path:
     required: true
     default: './version.txt'
-  fail_on_check:
-    required: true
-    default: true
-  comment_on_fail:
-    required: true
-    default: true
 outputs:
   updated:
     description: 'If the version was updated or not.'
