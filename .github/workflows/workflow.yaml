@@ -21,9 +21,6 @@ jobs:
         with:
           path: "version.txt"
 
-      - name: temp
-        run: |
-          echo ${{  steps.selftest.outputs.updated }}
       - name: Log Success
         if: ${{ steps.selftest.outputs.updated == 'true' }}
         run: |
