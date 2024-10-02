@@ -13,12 +13,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: 'branch'
+
       - name: Self test
         if: ${{ github.ref != 'refs/heads/main' }}
         id: selftest
         uses: khalford/check-version-action@main
         with:
           path: "version.txt"
-      - name: Check output
+      - name: Log Success
+        if: ${{ steps.version_comparison.outputs.updated == "true" }}
         run: |
-          echo "${{ steps.selftest.outputs.updated }}"
+          echo "Version has been updated correctly!"

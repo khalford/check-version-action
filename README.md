@@ -23,6 +23,8 @@ More detailed information about the versions can be found [here](https://packagi
     path: 'branch'
     
 - name: Compare versions
+  # Don't run on main otherwise it will compare main with main
+  if: ${{ github.ref != 'refs/heads/main' }} 
   id: version_comparison
   uses: khalford/check-version-action@main
   with:
