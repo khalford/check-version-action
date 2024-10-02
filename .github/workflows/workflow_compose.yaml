@@ -1,4 +1,4 @@
-name: Integration Test
+name: Integration Test with Compose
 on: [push, pull_request]
 jobs:
   self-test:
@@ -20,8 +20,14 @@ jobs:
         uses: khalford/check-version-action@main
         with:
           app_version_path: "version.txt"
+          docker_compose_path: "docker-compose.yml"
 
       - name: Log Success
-        if: ${{ steps.selftest.outputs.updated == 'true' }}
+        if: ${{ steps.selftest.outputs.app_updated == 'true' }}
         run: |
-          echo "Version has been updated correctly!"
+          echo "App version has been updated correctly!"
+
+      - name: Log Success
+        if: ${{ steps.selftest.outputs.compose_updated == 'true' }}
+        run: |
+          echo "Compose version has been updated correctly!"
