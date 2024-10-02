@@ -75,18 +75,19 @@ if __name__ == "__main__":
 
     main_version, branch_version = get_file_contents(MAIN_PATH, BRANCH_PATH, APP_PATH)
     APP_UPDATED = compare_app_version(main_version, branch_version, str(APP_PATH))
-
+    GITHUB_ENV = os.getenv('GITHUB_ENV')
     if COMPOSE_PATH:
         COMPOSE_PATH = Path(COMPOSE_PATH)
         COMPOSE_UPDATED = compare_compose_version(branch_version, BRANCH_PATH, str(COMPOSE_PATH), str(APP_PATH))
-        GITHUB_ENV = os.getenv('GITHUB_ENV')
+
         with open(GITHUB_ENV, "a") as env:
-            print("wrote compose")
+
             env.write("compose_updated=true")
+            print("wrote compose")
 
     # Set the outputs variable to "true"
     # No need to check here as we expect only true returned
-    GITHUB_ENV = os.getenv('GITHUB_ENV')
     with open(GITHUB_ENV, "a") as env:
-        print("wrote app")
+
         env.write("app_updated=true")
+        print("wrote app")
