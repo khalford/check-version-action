@@ -23,8 +23,8 @@ jobs:
 
       - name: temp
         run: |
-          echo ${{  steps.version_comparison.outputs.updated }}
+          echo ${{  steps.selftest.outputs.updated }}
       - name: Log Success
-        if: ${{ steps.version_comparison.outputs.updated == 'true' }}
+        if: ${{ steps.selftest.outputs.updated == 'true' }}
         run: |
           echo "Version has been updated correctly!"
