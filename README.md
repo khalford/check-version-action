@@ -5,6 +5,8 @@ This action compares the version number from your working branch to the main bra
 The comparison follows the PEP 440 Version Identification and Dependency Specification.
 More detailed information about the versions can be found [here](https://packaging.python.org/en/latest/specifications/version-specifiers/)
 
+More detailed information about the versions can be found [here](https://packaging.python.org/en/latest/specifications/version-specifiers/)
+
 # Usage
 
 <!-- start usage -->
