@@ -1,1 +1,34 @@
-# check-version-action
+# Check Version
+
+This action compares the version number from your working branch to the main branch.
+
+The comparison follows the PEP 440 Version Identification and Dependency Specification.
+
+# Usage
+
+<!-- start usage -->
+```yaml
+- name: Checkout main
+  uses: actions/checkout@v4
+  with:
+    ref: 'main'
+    path: 'main'
+
+- name: Checkout current working branch
+  uses: actions/checkout@v4
+  with:
+    path: 'branch'
+    
+- name: Compare versions
+  id: version_comparison
+  uses: khalford/check-version-action@main
+  with:
+    # Path to version file from project root
+    path: "version.txt"
+    
+- name: Log Success
+  if: ${{ steps.version_comparison.outputs.updated == "true" }}
+  run: |
+    echo "Version has been updated correctly!"
+```
+<!-- end usage -->
