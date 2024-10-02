@@ -1,7 +1,7 @@
 name: Integration Test
 on: [push, pull_request]
 jobs:
-  build:
+  self-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Main to compare
