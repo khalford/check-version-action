@@ -22,6 +22,6 @@ jobs:
           app_version_path: "version.txt"
 
       - name: Log Success
-        if: ${{ steps.selftest.outputs.updated == 'true' }}
+        if: ${{ steps.selftest.outputs.app_updated == 'true' }}
         run: |
           echo "Version has been updated correctly!"
