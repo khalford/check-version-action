@@ -56,7 +56,7 @@ def compare_compose_version(branch_version: str, branch_path: Path, compose_path
     version_str = ""
     for line in compose_file_contents:
         if "image" in line:
-            version_str = line.split(":")
+            version_str = line.strip('\n').split(":")[-1]
             print(version_str)
             break
     if Version(branch_version) != Version(version_str):
