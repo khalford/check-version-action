@@ -22,7 +22,7 @@ class CompareAppVersion(Base):
         comparison = self.compare(main_ver, branch_ver)
         if comparison == VersionNotUpdated:
             raise VersionNotUpdated(
-                f"The version in {'/'.join(str(path1).split('/')[3:])} has not been updated correctly."
+                f"The version in {('/'.join(str(path2).split('/')[4:]))[0:]} has not been updated correctly."
             )
         return True
 
@@ -79,8 +79,8 @@ class CompareComposeVersion(Base):
         comparison = self.compare(app_ver, compose_ver)
         if comparison == VersionNotUpdated:
             raise VersionNotUpdated(
-                f"The version in {'/'.join(str(compose).split('/')[3:])}"
-                f"does not match {'/'.join(str(app).split('/')[3:])}."
+                f"The version in {('/'.join(str(compose).split('/')[4:]))[0:]}"
+                f"does not match {('/'.join(str(app).split('/')[4:]))[0:]}."
             )
         return True
 
