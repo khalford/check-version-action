@@ -1,9 +1,10 @@
 # Check Version
 
-This action compares the version number from your working branch to the main branch.
+This action compares the application version number from your working branch to the main branch.
+
+You can also check that the *first* image version that appears in your `docker-compose.yaml` file will match the application version
 
 The comparison follows the PEP 440 Version Identification and Dependency Specification.
-More detailed information about the versions can be found [here](https://packaging.python.org/en/latest/specifications/version-specifiers/)
 
 More detailed information about the versions can be found [here](https://packaging.python.org/en/latest/specifications/version-specifiers/)
 
@@ -29,12 +30,20 @@ More detailed information about the versions can be found [here](https://packagi
   uses: khalford/check-version-action@main
   with:
     # Path to version file from project root
-    path: "version.txt"
+    app_version_path: "version.txt"
+    # Optional: To check if compose image version matches application version
+    docker_compose_path: "docker-compose.yaml"
     
-- name: Log Success
-  if: ${{ steps.version_comparison.outputs.updated == 'true' }}
+- name: Log App Success
+  if: ${{ env.app_updated == 'true' }}
   run: |
-    echo "Version has been updated correctly!"
+    echo "App version has been updated correctly!"
+
+# Optional: If using the docker compose check
+- name: Log Compose Success
+  if: ${{ env.compose_updated == 'true' }}
+  run: |
+    echo "Compose version has been updated correctly!"
 ```
 <!-- end usage -->
 
