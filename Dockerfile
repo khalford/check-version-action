@@ -4,4 +4,4 @@ COPY . .
 RUN pip install -r requirements.txt
 RUN pwd
 RUN ls -al
-CMD ["python","src/main.py"]
+CMD ["python","/app/src/main.py"]
