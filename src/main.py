@@ -24,6 +24,7 @@ def main():
     github_env = os.getenv("GITHUB_ENV")
     with open(github_env, "a", encoding='utf-8') as env:
         # We can assume either/both of these values returned true otherwise they would have errored
+        print("debug")
         env.write("app_updated=true\n")
         if compose_path:
             env.write("compose_updated=true")
