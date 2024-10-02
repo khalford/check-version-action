@@ -10,6 +10,11 @@ More detailed information about the versions can be found [here](https://packagi
 
 # Usage
 
+## Note:
+
+The release tag is extracted and stored in `$GITHUB_ENV`,
+you can access this in your workflow with `$ {{ env.release_tag }}` 
+
 <!-- start usage -->
 ```yaml
 - name: Checkout main

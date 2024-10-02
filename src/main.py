@@ -15,6 +15,8 @@ def main():
     root_path = Path(os.environ.get("GITHUB_WORKSPACE"))
     main_path = root_path / "main"
     branch_path = root_path / "branch"
+    with open(branch_path / app_path, "r", encoding='utf-8') as release_file:
+        release_version = release_file.read().strip('\n')
 
     CompareAppVersion().run(main_path / app_path, branch_path / app_path)
     if compose_path:
@@ -27,6 +29,7 @@ def main():
         env.write("app_updated=true\n")
         if compose_path:
             env.write("compose_updated=true")
+        env.write(f"release_tag={release_version}")
 
 
 if __name__ == "__main__":
