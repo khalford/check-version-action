@@ -2,7 +2,7 @@
 
 This action compares the application version number from your working branch to the main branch.
 
-You can also check that the *first* image version that appears in your `docker-compose.yaml` file will match the application version
+You can also check that the **first** image version that appears in your `docker-compose.yaml` file will match the application version
 
 The comparison follows the PEP 440 Version Identification and Dependency Specification.
 
