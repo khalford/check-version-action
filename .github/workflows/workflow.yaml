@@ -25,6 +25,6 @@ jobs:
         run: |
           echo ${{  steps.version_comparison.outputs.updated }}
       - name: Log Success
-        if: ${{ steps.version_comparison.outputs.updated == true }}
+        if: ${{ steps.version_comparison.outputs.updated == 'true' }}
         run: |
           echo "Version has been updated correctly!"
