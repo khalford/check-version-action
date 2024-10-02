@@ -14,6 +14,7 @@ jobs:
         with:
           path: 'branch'
       - name: Self test
+        if: ${{ github.ref != 'refs/heads/main' }}
         id: selftest
         uses: khalford/check-version-action@main
         with:
