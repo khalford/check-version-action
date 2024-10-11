@@ -20,12 +20,15 @@ you can access this in your workflow with `$ {{ env.release_tag }}`
 - name: Checkout main
   uses: actions/checkout@v4
   with:
+    # Change to "master" if needed
     ref: 'main'
+    # Do not change the path here
     path: 'main'
 
 - name: Checkout current working branch
   uses: actions/checkout@v4
   with:
+    # Do not change the path here
     path: 'branch'
     
 - name: Compare versions
