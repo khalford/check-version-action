@@ -1,12 +1,14 @@
-import pytest
+"""Tests for comparison.CompareComposeVersion"""
 from unittest.mock import patch, mock_open
 from pathlib import Path
+import pytest
 from packaging.version import Version
 from comparison import CompareComposeVersion, VersionNotUpdated
 
 
 @pytest.fixture(name="instance", scope="function")
 def instance_fixture():
+    """Provide a fixture instance for the tests"""
     return CompareComposeVersion()
 
 
@@ -48,7 +50,7 @@ def test_read_files(instance):
 def test_get_version(instance):
     """Test a version object is returned"""
     res = instance.get_version(["image: some/image:1.0.0\n"])
-    assert type(res) is Version
+    assert isinstance(res, Version)
 
 
 def test_compare_pass(instance):

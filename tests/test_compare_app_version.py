@@ -1,12 +1,14 @@
-import pytest
+"""Tests for comparison.CompareAppVersion"""
 from unittest.mock import patch, mock_open
 from pathlib import Path
 from packaging.version import Version
+import pytest
 from comparison import CompareAppVersion, VersionNotUpdated
 
 
 @pytest.fixture(name="instance", scope="function")
 def instance_fixture():
+    """Provide a fixture instance for the tests"""
     return CompareAppVersion()
 
 
@@ -49,7 +51,7 @@ def test_read_files(instance):
 def test_get_version(instance):
     """Test a version object is returned"""
     res = instance.get_version("1.0.0")
-    assert type(res) is Version
+    assert isinstance(res, Version)
 
 
 def test_compare_pass(instance):
