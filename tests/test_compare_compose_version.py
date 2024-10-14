@@ -40,7 +40,7 @@ def test_run_fails(mock_read, _, mock_compare, instance):
 
 def test_read_files(instance):
     """Test the read files method returns a tuple"""
-    with patch("builtins.open", mock_open(read_data='1.0.0')):
+    with patch("builtins.open", mock_open(read_data="1.0.0")):
         res = instance.read_files(Path("mock1"), Path("mock2"))
     assert res == ("1.0.0", ["1.0.0"])
 

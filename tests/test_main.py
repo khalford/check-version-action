@@ -8,12 +8,8 @@ from main import main
 @patch("main.os")
 def test_main(mock_os, mock_compare_app, mock_compare_compose):
     """Test the main method runs correctly."""
-    mock_os.environ.get.side_effect = [
-        Path("app"),
-        Path("compose"),
-        Path("workspace")
-    ]
-    with patch("builtins.open", mock_open(read_data='1.0.0')):
+    mock_os.environ.get.side_effect = [Path("app"), Path("compose"), Path("workspace")]
+    with patch("builtins.open", mock_open(read_data="1.0.0")):
         main()
     mock_os.environ.get.assert_any_call("INPUT_APP_VERSION_PATH")
     mock_os.environ.get.assert_any_call("INPUT_DOCKER_COMPOSE_PATH")

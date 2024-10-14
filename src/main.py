@@ -15,8 +15,8 @@ def main():
     root_path = Path(os.environ.get("GITHUB_WORKSPACE"))
     main_path = root_path / "main"
     branch_path = root_path / "branch"
-    with open(branch_path / app_path, "r", encoding='utf-8') as release_file:
-        release_version = release_file.read().strip('\n')
+    with open(branch_path / app_path, "r", encoding="utf-8") as release_file:
+        release_version = release_file.read().strip("\n")
 
     CompareAppVersion().run(main_path / app_path, branch_path / app_path)
     if compose_path:
@@ -24,7 +24,7 @@ def main():
         CompareComposeVersion().run(branch_path / app_path, branch_path / compose_path)
 
     github_env = os.getenv("GITHUB_ENV")
-    with open(github_env, "a", encoding='utf-8') as env:
+    with open(github_env, "a", encoding="utf-8") as env:
         # We can assume either/both of these values returned true otherwise they would have errored
         env.write("app_updated=true\n")
         if compose_path:

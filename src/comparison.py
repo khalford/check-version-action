@@ -1,4 +1,5 @@
 """The comparison module which is where the main check classes are."""
+
 from pathlib import Path
 from typing import Union, List, Type
 

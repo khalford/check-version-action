@@ -1,4 +1,5 @@
 """This is the base module including helper/abstract classes and errors."""
+
 from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Union
