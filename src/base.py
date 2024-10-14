@@ -1,4 +1,5 @@
 """This is the base module including helper/abstract classes and errors."""
+
 from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Union
@@ -31,5 +32,5 @@ class Base(ABC):
 
     @staticmethod
     @abstractmethod
-    def compare(version1: Version, version2: Version) -> Union[True, VersionNotUpdated]:
+    def compare(version1: Version, version2: Version) -> Union[bool, VersionNotUpdated]:
         """This method should compare the versions and return a bool status"""
