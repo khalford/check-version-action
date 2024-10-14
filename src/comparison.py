@@ -1,6 +1,6 @@
 """The comparison module which is where the main check classes are."""
 from pathlib import Path
-from typing import Union, List
+from typing import Union, List, Type
 
 from packaging.version import Version
 from base import Base, VersionNotUpdated
@@ -51,7 +51,7 @@ class CompareAppVersion(Base):
         return Version(content)
 
     @staticmethod
-    def compare(main: Version, branch: Version) -> Union[True, VersionNotUpdated]:
+    def compare(main: Version, branch: Version) -> Union[bool, Type[VersionNotUpdated]]:
         """
         Returns if the branch version is larger than the main version
         :param main: Version on main
@@ -99,7 +99,7 @@ class CompareComposeVersion(Base):
         return content1, content2
 
     @staticmethod
-    def get_version(content: str) -> Version:
+    def get_version(content: List[str]) -> Version:
         """
         This method returns the version from the file as an object
         For compose versions we have to do some data handling.
@@ -114,7 +114,7 @@ class CompareComposeVersion(Base):
         return Version(version_str)
 
     @staticmethod
-    def compare(app: Version, compose: Version) -> Union[True, VersionNotUpdated]:
+    def compare(app: Version, compose: Version) -> Union[bool, Type[VersionNotUpdated]]:
         """
         Returns if the application version and docker compose version are equal.
         :param app: App version

@@ -31,5 +31,5 @@ class Base(ABC):
 
     @staticmethod
     @abstractmethod
-    def compare(version1: Version, version2: Version) -> Union[True, VersionNotUpdated]:
+    def compare(version1: Version, version2: Version) -> Union[bool, VersionNotUpdated]:
         """This method should compare the versions and return a bool status"""
