@@ -1,4 +1,4 @@
-![Self Test Workflow](https://github.com/github/docs/actions/workflows/self_test.yaml/badge.svg)
+![Self Test Workflow](https://github.com/khalford/check-version-action/actions/workflows/self_test.yaml/badge.svg)
 # Check Version
 
 This action compares the application version number from your working branch to the main branch.
