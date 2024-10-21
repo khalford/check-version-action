@@ -1,7 +1,7 @@
 # Check Version
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/khalford/check-version-action/self_test.yaml?label=Self%20Test)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/khalford/check-version-action/self_test.yaml?label=Intergration%20Test)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/khalford/check-version-action/lint.yaml?label=Linting)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/khalford/check-version-action/test.yaml?label=Unit%20Tests)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/khalford/check-version-action/test.yaml?label=Tests)
 [![codecov](https://codecov.io/gh/khalford/check-version-action/graph/badge.svg?token=441S7FRP3I)](https://codecov.io/gh/khalford/check-version-action)
 
 
