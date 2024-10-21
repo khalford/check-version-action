@@ -1,4 +1,5 @@
 """Tests for comparison.CompareAppVersion"""
+
 from unittest.mock import patch, mock_open
 from pathlib import Path
 from packaging.version import Version
