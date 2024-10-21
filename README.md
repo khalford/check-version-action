@@ -10,7 +10,10 @@ More detailed information about the versions can be found [here](https://packagi
 
 # Usage
 
-## Note:
+## Notes:
+
+As of October 2024 GitHub actions using Docker Containers can only be run on GitHub runners using a Linux operating system.<br>
+Read here for details: [Link to GitHub docs](https://docs.github.com/en/actions/sharing-automations/creating-actions/about-custom-actions#types-of-actions)
 
 The release tag is extracted and stored in `$GITHUB_ENV`,
 you can access this in your workflow with `$ {{ env.release_tag }}` 
