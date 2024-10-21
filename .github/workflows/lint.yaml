@@ -1,11 +1,11 @@
-name: Test and Lint
+name: Lint
 on: [push, pull_request]
 jobs:
   test_and_lint:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ['ubuntu-20.04','ubuntu-22.04', 'ubuntu-latest']
+        os: ['ubuntu-22.04', 'ubuntu-latest']
         python-version: [ "3.12", "3.x" ]
     steps:
       - uses: actions/checkout@v4
@@ -25,16 +25,5 @@ jobs:
           python3 -m pylint src --recursive=true --rcfile=.pylintrc
           python3 -m pylint tests --recursive=true --rcfile=.pylintrc
 
-      - name: Run tests
-        run: |
-          python3 -m pytest tests
-
-      - name: Run tests and collect coverage
-        run: |
-          python3 -m pytest tests --cov-report xml:coverage.xml --cov
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          token: ${{secrets.CODECOV_TOKEN}}
-          files: cloud-coverage.xml
+      - name: Run Black formatter
+        uses: psf/black@stable

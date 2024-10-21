@@ -1,4 +1,5 @@
 """Tests for comparison.CompareComposeVersion"""
+
 from unittest.mock import patch, mock_open
 from pathlib import Path
 import pytest
