@@ -22,8 +22,8 @@ jobs:
 
       - name: Analyse with pylint
         run: |
-          pylint src --recursive=true --rcfile=.pylintrc
-          pylint tests --recursive=true --rcfile=.pylintrc
+          python3 -m pylint src --recursive=true --rcfile=.pylintrc
+          python3 -m pylint tests --recursive=true --rcfile=.pylintrc
 
       - name: Run tests
         run: |
